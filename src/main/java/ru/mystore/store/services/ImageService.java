@@ -38,9 +38,9 @@ public class ImageService {
     }
 
 
-    public BufferedImage loadFirstImage(String id) throws IOException {
+    public BufferedImage loadFirstImage(String product_id) throws IOException {
         try {
-            String imageName = getFirstImageNameByProductId(UUID.fromString(id));
+            String imageName = getFirstImageNameByProductId(UUID.fromString(product_id));
             Resource resource = new ClassPathResource("/static/images/" + imageName);
             if (resource.exists()) {
                 return ImageIO.read(resource.getFile());
