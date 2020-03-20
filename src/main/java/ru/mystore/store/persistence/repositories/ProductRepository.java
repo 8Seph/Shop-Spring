@@ -14,6 +14,9 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
     List<Product> findAll();
     List<Product> findAllByCategory(ProductCategory category);
 
+    @Query(value = "select * from product  order by available desc", nativeQuery = true)
+    List<Product> findAllOrderByAvailableDesc();
+
 //    @Query(value = "SELECT p.product_id FROM product p", nativeQuery = true)
 //    List<UUID> getAllProductUUID();
 

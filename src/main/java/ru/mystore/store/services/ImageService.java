@@ -38,29 +38,6 @@ public class ImageService {
     }
 
 
-    public List<BufferedImage> loadAllImages(String product_id) throws IOException {
-        List<BufferedImage> bufferedImages = new ArrayList<>();
-        try {
-            List<String> imageNames = getAllImageNamesByProductId(UUID.fromString(product_id));
-            for (int i = 0; i < imageNames.size(); i++) {
-                Resource resource = new ClassPathResource("/static/images/" + imageNames.get(i));
-                if (resource.exists()) {
-                    bufferedImages.add(ImageIO.read(resource.getFile()));
-                } else {
-                    log.error("Image not found!");
-                    throw new FileNotFoundException("File " + imageNames.get(i) + " not found!");
-                }
-
-            }
-
-        } catch (MalformedInputException | FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return (bufferedImages.size() > 0) ? bufferedImages : null;
-
-    }
-
     public BufferedImage loadFirstImage(String id) throws IOException {
         try {
             String imageName = getFirstImageNameByProductId(UUID.fromString(id));
@@ -75,5 +52,29 @@ public class ImageService {
             return null;
         }
     }
+
+
+//    public List<BufferedImage> loadAllImages(String product_id) throws IOException {
+//        List<BufferedImage> bufferedImages = new ArrayList<>();
+//        try {
+//            List<String> imageNames = getAllImageNamesByProductId(UUID.fromString(product_id));
+//            for (int i = 0; i < imageNames.size(); i++) {
+//                Resource resource = new ClassPathResource("/static/images/" + imageNames.get(i));
+//                if (resource.exists()) {
+//                    bufferedImages.add(ImageIO.read(resource.getFile()));
+//                } else {
+//                    log.error("Image not found!");
+//                    throw new FileNotFoundException("File " + imageNames.get(i) + " not found!");
+//                }
+//
+//            }
+//
+//        } catch (MalformedInputException | FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//
+//        return (bufferedImages.size() > 0) ? bufferedImages : null;
+//
+//    }
 
 }

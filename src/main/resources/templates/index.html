@@ -7,7 +7,6 @@
     </head>
     <body>
         <div class="container">
-
             <div style="text-align: center;">
                 <h1>Super Shop</h1>
             </div>
@@ -21,12 +20,13 @@
                     <th>Описание</th>
                     <th>Цена</th>
                     <th>Дата добавления</th>
+                    <th>Доступность</th>
                 </tr>
                 </thead>
                 <tbody>
                     <tr th:each="product, iterator : ${products}">
 
-                        <span th:if="${product.available}">
+                        <span >
                             <td th:text="${iterator.index + 1}"/>
                             <td>
                                 <a th:href="@{'/products/' + ${product.id}}">[[ ${product.title} ]]</a>
@@ -43,11 +43,10 @@
                                 </div>
                             </td>
 
-
-
                             <td th:text="${product.description}"/>
                             <td th:text="${product.price}"/>
                             <td th:text="${#dates.format(product.added, 'dd-MM-yyyy')}"/>
+                            <td th:text="${product.available}"/>
                         </span>
                     </tr>
                 </tbody>
@@ -67,6 +66,8 @@
                 </select>
                 <button type="submit">применить</button>
             </form>
+
+
         </div>
     </body>
 </html>

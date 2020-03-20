@@ -18,9 +18,12 @@ import ru.mystore.store.services.ProductService;
 
 import javax.imageio.ImageIO;
 
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -36,19 +39,16 @@ public class ProductController {
 
         // утилита для проверки UUID
         if(productService.checkProductUUID(id)){
-
         }
 
         model.addAttribute("product", productService.findOneById(UUID.fromString(id)));
         return "product";
     }
 
-
-
     @GetMapping(value = "/image/{id}", produces = MediaType.IMAGE_PNG_VALUE)
     public @ResponseBody byte[] getImage(@PathVariable String id) {
 
-        // TODO ДЗ - сделать поддержку множества картинок
+        // все картинки товара грузутся только в product.html
 
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -58,7 +58,5 @@ public class ProductController {
             throw new RuntimeException();
         }
     }
-
-
 
 }

@@ -38,4 +38,8 @@ public class ProductService {
         return category == null ? productRepository.findAll() : productRepository.findAllByCategory(ProductCategory.values()[category]);
     }
 
+    public List<Product> findAllOrderByAvailableDesc(){
+        return productRepository.findAllOrderByAvailableDesc();
+    }
+
 }
