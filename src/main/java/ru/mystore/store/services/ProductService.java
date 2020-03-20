@@ -42,4 +42,8 @@ public class ProductService {
         return productRepository.findAllOrderByAvailableDesc();
     }
 
+    public List<Product> findAllOrderByAvailable(){
+        return productRepository.findAllOrderByAvailable();
+    }
+
 }

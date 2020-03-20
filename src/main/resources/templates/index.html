@@ -32,10 +32,6 @@
                                 <a th:href="@{'/products/' + ${product.id}}">[[ ${product.title} ]]</a>
                             </td>
 
-<!--                            <td th:each="img, iterator: ${product.getImages()}">-->
-
-<!--                            </td>-->
-
 
                             <td>
                                 <div>
@@ -59,10 +55,19 @@
                     <option th:text="'Не выбрано'" th:value="null"/>
 
                     <!--/*@thymesVar id="values" type="ru.mystore.store.persistence.entities.enums.ProductCategory"*/-->
-                    <option th:each="category : ${T(ru.mystore.store.persistence.entities.enums.ProductCategory).values()}"
-                            th:value="${category.ordinal()}"
-                            th:text="${category.name}"
+                    <option th:each="c : ${T(ru.mystore.store.persistence.entities.enums.ProductCategory).values()}"
+                            th:value="${c.ordinal()}"
+                            th:text="${c.name}"
                     />
+                </select>
+                <button type="submit">применить</button>
+            </form>
+
+            Фильтр по доступности:
+            <form th:action="@{/}" method="get">
+                <select name="ava">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
                 </select>
                 <button type="submit">применить</button>
             </form>

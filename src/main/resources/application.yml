@@ -9,7 +9,7 @@ spring:
     username: postgres
     password: se1234
   jpa:
-    show-sql: true
+    show-sql: false
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
   thymeleaf:
     cache: false
