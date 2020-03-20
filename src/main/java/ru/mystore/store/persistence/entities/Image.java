@@ -1,21 +1,24 @@
 package ru.mystore.store.persistence.entities;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import ru.mystore.store.persistence.entities.utils.PersistableEntity;
-
-
-import javax.persistence.Entity;
-
+import javax.persistence.*;
 import java.io.Serializable;
+
 
 @Data
 @Entity
-@EqualsAndHashCode(callSuper = true)
-public class Image extends PersistableEntity implements Serializable {
+@Table(name = "product_images")
+public class Image  {
 
-    private static final long SUID = 1L;
+  // private static final long SUID = 1L; - зачем?
 
-    private String name;
+    @Id
+    private long id;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id") //название колонки внутри сущности product
+    private Product product;
+
+    private String path;
 
 }

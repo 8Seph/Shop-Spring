@@ -1,4 +1,4 @@
-package ru.geekbrains.supershop.controllers;
+package ru.mystore.store.controllers;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import ru.mystore.store.exceptions.ProductNotFoundException;
 
-import ru.geekbrains.supershop.exceptions.ProductNotFoundException;
 
 @Slf4j
 @ControllerAdvice

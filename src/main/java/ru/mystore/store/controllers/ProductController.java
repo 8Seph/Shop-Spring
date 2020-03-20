@@ -34,24 +34,31 @@ public class ProductController {
     @GetMapping("/{id}")
     public String getOneProduct(Model model, @PathVariable String id) throws ProductNotFoundException {
 
-        // TODO ДЗ - утилита, которая будет проверять UUID
+        // утилита для проверки UUID
+        if(productService.checkProductUUID(id)){
+
+        }
 
         model.addAttribute("product", productService.findOneById(UUID.fromString(id)));
         return "product";
     }
 
-    @GetMapping(value = "/images/{id}", produces = MediaType.IMAGE_PNG_VALUE)
+
+
+    @GetMapping(value = "/image/{id}", produces = MediaType.IMAGE_PNG_VALUE)
     public @ResponseBody byte[] getImage(@PathVariable String id) {
 
         // TODO ДЗ - сделать поддержку множества картинок
 
         try {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            ImageIO.write(imageService.loadFileAsResource(id), "png", byteArrayOutputStream);
+            ImageIO.write(imageService.loadFirstImage(id), "png", byteArrayOutputStream);
             return byteArrayOutputStream.toByteArray();
         } catch (IOException e) {
             throw new RuntimeException();
         }
     }
+
+
 
 }

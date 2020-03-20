@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import ru.mystore.store.persistence.repositories.ImageRepository;
 
@@ -19,6 +18,8 @@ import java.io.IOException;
 
 import java.nio.charset.MalformedInputException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Slf4j
@@ -28,13 +29,41 @@ public class ImageService {
 
     private final ImageRepository imageRepository;
 
-    private String getImageForSpecificProduct(UUID id) {
-        return imageRepository.obtainImageNameByProductId(id);
+    private String getFirstImageNameByProductId(UUID id) {
+        return imageRepository.getFirstImageByProductId(id);
     }
 
-    public BufferedImage loadFileAsResource(String id) throws IOException {
+    private List<String> getAllImageNamesByProductId(UUID id) {
+        return imageRepository.getAllImagesByProductId(id);
+    }
+
+
+    public List<BufferedImage> loadAllImages(String product_id) throws IOException {
+        List<BufferedImage> bufferedImages = new ArrayList<>();
         try {
-            String imageName = getImageForSpecificProduct(UUID.fromString(id));
+            List<String> imageNames = getAllImageNamesByProductId(UUID.fromString(product_id));
+            for (int i = 0; i < imageNames.size(); i++) {
+                Resource resource = new ClassPathResource("/static/images/" + imageNames.get(i));
+                if (resource.exists()) {
+                    bufferedImages.add(ImageIO.read(resource.getFile()));
+                } else {
+                    log.error("Image not found!");
+                    throw new FileNotFoundException("File " + imageNames.get(i) + " not found!");
+                }
+
+            }
+
+        } catch (MalformedInputException | FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return (bufferedImages.size() > 0) ? bufferedImages : null;
+
+    }
+
+    public BufferedImage loadFirstImage(String id) throws IOException {
+        try {
+            String imageName = getFirstImageNameByProductId(UUID.fromString(id));
             Resource resource = new ClassPathResource("/static/images/" + imageName);
             if (resource.exists()) {
                 return ImageIO.read(resource.getFile());

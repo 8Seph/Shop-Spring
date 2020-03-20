@@ -3,28 +3,28 @@ package ru.mystore.store.persistence.entities;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import lombok.NoArgsConstructor;
 import ru.mystore.store.persistence.entities.enums.ProductCategory;
-import ru.mystore.store.persistence.entities.utils.PersistableEntity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+
+import javax.persistence.*;
 
 import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 @Data
 @Entity
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
-public class Product extends PersistableEntity {
+public class Product  {
+
+    @Id
+    @Column(name = "product_id")
+    private UUID id;
 
     private String title;
 
@@ -39,8 +39,7 @@ public class Product extends PersistableEntity {
     @Enumerated(EnumType.ORDINAL)
     private ProductCategory category;
 
-    @OneToOne
-  //  @JoinColumn(name = "image")
-    private Image image;
+    @OneToMany(mappedBy = "product") //название сущности внутри image
+    private List<Image> images;
 
 }
