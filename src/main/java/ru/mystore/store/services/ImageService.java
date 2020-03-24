@@ -69,8 +69,8 @@ public class ImageService {
     @Transactional
     public Image uploadProductImage(MultipartFile multipartFile, Product product) throws IOException {
         String imageName = product.getTitle() + checkImageExtension(multipartFile);
-        Path targetLocation = Paths.get(IMAGES_PATH + imageName);
-        Files.copy(multipartFile.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
+        Path imageDir = Paths.get(IMAGES_PATH + imageName);
+        Files.copy(multipartFile.getInputStream(), imageDir, StandardCopyOption.REPLACE_EXISTING);
         return imageRepository.save(new Image(imageName));
     }
 
