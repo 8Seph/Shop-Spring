@@ -62,7 +62,7 @@
                 </thead>
                 <tbody>
                     <tr th:each="product, iterator : ${products}">
-                        <!--/*@thymesVar id="product" type="ru.geekbrains.supershop.persistence.entities.Product"*/-->
+                        <!--/*@thymesVar id="product" type="ru.mystore.store.persistence.entities.Product"*/-->
                         <span th:if="${product.available}">
                             <td th:text="${iterator.index + 1}"></td>
                             <td>
