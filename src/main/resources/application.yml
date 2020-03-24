@@ -1,10 +1,10 @@
 server:
   servlet:
-    context-path: /store
+    context-path: /shop
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/store?useUnicode=true&characterEncoding=utf8
+    url: jdbc:postgresql://localhost:5432/onlineshop?useUnicode=true&characterEncoding=utf8
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: se1234
