@@ -36,10 +36,8 @@ public class ProductController {
     private final ImageService imageService;
     private final ProductService productService;
 
-
     @GetMapping("/{id}")
     public String getOneProduct(Model model, @PathVariable String id) throws ProductNotFoundException {
-
         model.addAttribute("product", productService.findOneById(UUID.fromString(id)));
         return "product";
     }
