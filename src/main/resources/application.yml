@@ -1,6 +1,6 @@
 server:
   servlet:
-    context-path: /supershop
+    context-path: /shop
 
 spring:
   datasource:
@@ -9,14 +9,7 @@ spring:
     username: postgres
     password: se1234
   jpa:
+    show-sql: false
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
-    show-sql: true
-    hibernate:
-      ddl-auto: none
   thymeleaf:
     cache: false
-
-files:
-  storepath:
-    icons:  "C:\\Users\\Seph\\OneDrive\\Java projects\\store\\storage\\icons"
-    images: "C:\\Users\\Seph\\OneDrive\\Java projects\\store\\storage\\images\\products"
