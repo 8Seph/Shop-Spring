@@ -17,25 +17,16 @@ repositories {
 
 dependencies {
 
-<<<<<<< Updated upstream
 	compileOnly 'org.springframework.boot:spring-boot-devtools'
 	compileOnly 'org.flywaydb:flyway-core'
-=======
-	compileOnly 'org.flywaydb:flyway-core'
-	compileOnly 'org.springframework.boot:spring-boot-devtools'
->>>>>>> Stashed changes
+
 
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-undertow'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-
-<<<<<<< Updated upstream
-
-
-=======
->>>>>>> Stashed changes
+	
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE'
 	
 	runtimeOnly 'org.postgresql:postgresql'
