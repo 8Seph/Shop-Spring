@@ -57,12 +57,11 @@
                     <th>Описание</th>
                     <th>Цена</th>
                     <th>Дата добавления</th>
-                    <th>В корзину</th>
                 </tr>
                 </thead>
                 <tbody>
                     <tr th:each="product, iterator : ${products}">
-                        <!--/*@thymesVar id="product" type="ru.mystore.store.persistence.entities.Product"*/-->
+                        <!--/*@thymesVar id="product" type="ru.geekbrains.supershop.persistence.entities.Product"*/-->
                         <span th:if="${product.available}">
                             <td th:text="${iterator.index + 1}"></td>
                             <td>
@@ -79,7 +78,7 @@
                             <td>
                                 <div sec:authorize="isAuthenticated()">
                                     <a th:href="@{'/cart/add/' + ${product.id}}">
-                                        <img th:src="@{'/icons/add.png'}" alt="" width="30px" height="30px" />
+                                        <img th:src="@{'/products/images/cart.png'}" alt="" width="30px" height="30px" />
                                     </a>
                                 </div>
                             </td>
