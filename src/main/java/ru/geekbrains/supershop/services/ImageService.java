@@ -59,7 +59,7 @@ public class ImageService {
                     filePath = ICONS_STORE_PATH.resolve(imageName).normalize();
                 }
             } else {
-                filePath = ICONS_STORE_PATH.resolve("cart.png").normalize();
+                filePath = ICONS_STORE_PATH.resolve("add.png").normalize();
             }
 
             if (filePath != null) {

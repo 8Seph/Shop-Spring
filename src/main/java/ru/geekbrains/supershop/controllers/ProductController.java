@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import ru.geekbrains.supershop.exceptions.ProductNotFoundException;
+import ru.geekbrains.supershop.exceptions.WrongCaptchaCodeException;
 import ru.geekbrains.supershop.persistence.entities.Image;
 import ru.geekbrains.supershop.persistence.entities.Product;
 import ru.geekbrains.supershop.persistence.entities.Review;
@@ -58,11 +59,12 @@ public class ProductController {
     }
 
     @GetMapping(value = "/images/{id}", produces = MediaType.IMAGE_PNG_VALUE)
-    public @ResponseBody byte[] getImage(@PathVariable String id) throws IOException {
+    public @ResponseBody
+    byte[] getImage(@PathVariable String id) throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         BufferedImage bufferedImage = imageService.loadFileAsResource(id);
         if (bufferedImage != null) {
-            ImageIO.write(bufferedImage,"png", byteArrayOutputStream);
+            ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
             return byteArrayOutputStream.toByteArray();
         } else {
             return new byte[0];
@@ -77,20 +79,20 @@ public class ProductController {
 
     @PostMapping("/reviews")
     public String addReview(ReviewPojo reviewPojo, HttpSession session, Principal principal) throws ProductNotFoundException {
+        if (reviewPojo.getCaptchaCode().equals(session.getAttribute("captchaCode"))) {
+            Product product = productService.findOneById(reviewPojo.getProductId());
+            Shopuser shopuser = shopuserService.findByPhone(principal.getName());
+            Review review = Review.builder()
+                    .commentary(reviewPojo.getCommentary())
+                    .product(product)
+                    .shopuser(shopuser)
+                    .build();
+            reviewService.save(review);
 
-        Product product = productService.findOneById(reviewPojo.getProductId());
-        Shopuser shopuser = shopuserService.findByPhone(principal.getName());
-
-        Review review = Review.builder()
-            .commentary(reviewPojo.getCommentary())
-            .product(product)
-            .shopuser(shopuser)
-        .build();
-
-        reviewService.save(review);
-
-        return "redirect:/products/" + product.getId();
-
+            return "redirect:/products/" + product.getId();
+        } else {
+            throw new WrongCaptchaCodeException("Не верная капча");
+        }
     }
 
 }

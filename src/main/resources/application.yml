@@ -10,7 +10,7 @@ spring:
     password: se1234
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: none
   thymeleaf:

@@ -27,11 +27,15 @@
                 <tbody th:if="${reviews.size() > 0}">
                 <tr th:each="review, iterator : ${reviews}">
                     <!--/*@thymesVar id="review" type="ru.geekbrains.supershop.persistence.entities.Review"*/-->
+
+                    <div th:if="${review.visible}">
+
                     <td th:text="${iterator.index + 1}"></td>
                     <td th:text="${review.commentary}"></td>
                     <td>
                         <a th:href="@{'/profile/' + ${review.shopuser.id}}">[[ ${review.shopuser.firstName} ]]</a>
                     </td>
+                    </div>
                 </tr>
                 </tbody>
             </table>

@@ -5,13 +5,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.ResponseBody;
 import ru.geekbrains.supershop.beans.Cart;
+import ru.geekbrains.supershop.persistence.entities.Review;
 import ru.geekbrains.supershop.persistence.entities.Shopuser;
+import ru.geekbrains.supershop.persistence.pojo.ReviewPojo;
 import ru.geekbrains.supershop.services.ProductService;
 import ru.geekbrains.supershop.services.ReviewService;
 import ru.geekbrains.supershop.services.ShopuserService;
@@ -24,6 +23,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
@@ -54,8 +54,15 @@ public class ShopController {
         }
 
         model.addAttribute("products", productService.findAll(null));
-
+        model.addAttribute("reviews", reviewService.getAllReviews());
         return "admin";
+    }
+
+    @PostMapping("/admin/visible")
+    public String setReviewVisible(ReviewPojo reviewPojo){
+        Review review = reviewService.getReviewById(UUID.fromString(reviewPojo.getId())).orElse(new Review());
+        reviewService.setVisible(review, reviewPojo.isVisible());
+        return "redirect:/admin";
     }
 
     @GetMapping("/profile")
