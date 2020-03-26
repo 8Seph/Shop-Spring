@@ -102,7 +102,8 @@
 
                         <form action="#" th:action="@{/admin/visible}" method="POST">
                             <td>
-                                <input type="checkbox" class="form-control" name="visible" th:checked="${review.visible}"/>
+                                <input type="checkbox" class="form-control" name="visible"
+                                       th:checked="${review.visible}"/>
                                 <input type="hidden" name="id" th:value="${review.id}">
                             </td>
                             <td>
