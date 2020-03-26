@@ -59,8 +59,7 @@ public class ProductController {
     }
 
     @GetMapping(value = "/images/{id}", produces = MediaType.IMAGE_PNG_VALUE)
-    public @ResponseBody
-    byte[] getImage(@PathVariable String id) throws IOException {
+    public @ResponseBody byte[] getImage(@PathVariable String id) throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         BufferedImage bufferedImage = imageService.loadFileAsResource(id);
         if (bufferedImage != null) {
