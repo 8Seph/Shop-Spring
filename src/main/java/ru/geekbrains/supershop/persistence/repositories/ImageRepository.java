@@ -1,11 +1,15 @@
-package ru.mystore.store.persistence.repositories;
+package ru.geekbrains.supershop.persistence.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+<<<<<<< Updated upstream:src/main/java/ru/mystore/store/persistence/repositories/ImageRepository.java
 import ru.mystore.store.persistence.entities.Image;
+=======
+import ru.geekbrains.supershop.persistence.entities.Image;
+>>>>>>> Stashed changes:src/main/java/ru/geekbrains/supershop/persistence/repositories/ImageRepository.java
 
 import java.util.UUID;
 

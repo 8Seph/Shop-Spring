@@ -1,4 +1,4 @@
-package ru.mystore.store.persistence.entities.enums;
+package ru.geekbrains.supershop.persistence.entities.enums;
 
 import lombok.Getter;
 

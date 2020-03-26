@@ -1,6 +1,10 @@
 server:
   servlet:
+<<<<<<< Updated upstream
     context-path: /shop
+=======
+    context-path: /supershop
+>>>>>>> Stashed changes
 
 spring:
   datasource:
@@ -9,7 +13,22 @@ spring:
     username: postgres
     password: se1234
   jpa:
+<<<<<<< Updated upstream
     show-sql: false
+=======
+>>>>>>> Stashed changes
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
   thymeleaf:
+<<<<<<< Updated upstream
     cache: false
+=======
+    cache: false
+
+files:
+  storepath:
+    icons:  "C:\\Users\\Seph\\OneDrive\\Java projects\\store\\storage\\icons"
+    images: "C:\\Users\\Seph\\OneDrive\\Java projects\\store\\storage\\images\\products"
+>>>>>>> Stashed changes

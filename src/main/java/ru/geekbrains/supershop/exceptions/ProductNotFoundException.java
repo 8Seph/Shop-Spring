@@ -1,4 +1,4 @@
-package ru.mystore.store.exceptions;
+package ru.geekbrains.supershop.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
