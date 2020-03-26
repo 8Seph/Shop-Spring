@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import ru.mystore.store.persistence.entities.enums.ProductCategory;
 import ru.mystore.store.persistence.entities.utils.PersistableEntity;
 
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -40,7 +39,7 @@ public class Product extends PersistableEntity {
     private ProductCategory category;
 
     @OneToOne
-  //  @JoinColumn(name = "image")
+    @JoinColumn(name = "image")
     private Image image;
 
 }
