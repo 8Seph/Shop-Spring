@@ -59,7 +59,8 @@ public class ProductController {
     }
 
     @GetMapping(value = "/images/{id}", produces = MediaType.IMAGE_PNG_VALUE)
-    public @ResponseBody byte[] getImage(@PathVariable String id) throws IOException {
+    public @ResponseBody
+    byte[] getImage(@PathVariable String id) throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         BufferedImage bufferedImage = imageService.loadFileAsResource(id);
         if (bufferedImage != null) {
@@ -77,14 +78,18 @@ public class ProductController {
     }
 
     @PostMapping("/reviews")
-    public String addReview(ReviewPojo reviewPojo, HttpSession session, Principal principal) throws ProductNotFoundException {
+    public String addReview(@RequestParam("image") MultipartFile multipartFile, ReviewPojo reviewPojo, HttpSession session, Principal principal) throws ProductNotFoundException, IOException {
         if (reviewPojo.getCaptchaCode().equals(session.getAttribute("captchaCode"))) {
             Product product = productService.findOneById(reviewPojo.getProductId());
             Shopuser shopuser = shopuserService.findByPhone(principal.getName());
+
+            Image image = imageService.uploadImage(multipartFile, shopuser.getPhone() + "-" + product.getTitle());
+
             Review review = Review.builder()
                     .commentary(reviewPojo.getCommentary())
                     .product(product)
                     .shopuser(shopuser)
+                    .image(image)
                     .build();
             reviewService.save(review);
 

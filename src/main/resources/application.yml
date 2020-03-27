@@ -19,4 +19,4 @@ spring:
 files:
   storepath:
     icons:  "C:\\Users\\Seph\\OneDrive\\Java projects\\store\\storage\\icons"
-    images: "C:\\Users\\Seph\\OneDrive\\Java projects\\store\\storage\\images\\products"
+    images: "C:\\Users\\Seph\\OneDrive\\Java projects\\store\\storage\\images"

@@ -75,6 +75,7 @@
         </tbody>
     </table>
 
+    <h3>Не проверенные отзывы</h3>
     <table class="table table-hover">
         <thead class="thead-dark">
         <tr>
@@ -82,14 +83,11 @@
             <th>Имя продукта</th>
             <th>Пользователь</th>
             <th>Комментарий</th>
+            <th>Изображение</th>
             <th>Видимость</th>
             <th>Действие</th>
-
-
         </tr>
         </thead>
-
-        <h3>Не проверенные отзывы</h3>
         <tbody>
         <tr th:each="review, iterator : ${reviews}">
                     <span th:if="${!review.visible}">
@@ -99,6 +97,11 @@
                             </td>
                             <td th:text="${review.shopuser.phone}"></td>
                             <td th:text="${review.commentary}"></td>
+                            <td>
+                                <img th:if="${review?.image}" th:src="@{'/products/images/' + ${review.id}}" alt=""
+                                     width="50px" height="50px"/>
+                            </td>
+
 
                         <form action="#" th:action="@{/admin/visible}" method="POST">
                             <td>

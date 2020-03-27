@@ -1,6 +1,7 @@
 package ru.geekbrains.supershop.persistence.pojo;
 
 import lombok.Data;
+import ru.geekbrains.supershop.persistence.entities.Image;
 
 import java.util.UUID;
 
