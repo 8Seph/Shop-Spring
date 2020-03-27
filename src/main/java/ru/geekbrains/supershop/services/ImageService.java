@@ -54,7 +54,7 @@ public class ImageService {
 
             if (Validators.isUUID(id)) {
 
-                //костыль
+                //todo костыль
                 imageName = getImageForSpecificProduct(UUID.fromString(id));
                 if (imageName == null) imageName = getImageForSpecificReview(UUID.fromString(id));
 
