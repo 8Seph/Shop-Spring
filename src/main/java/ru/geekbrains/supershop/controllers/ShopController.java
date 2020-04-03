@@ -1,5 +1,6 @@
 package ru.geekbrains.supershop.controllers;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.amqp.core.AmqpTemplate;
@@ -50,24 +51,21 @@ public class ShopController {
         return "index";
     }
 
+    @ApiOperation(value = "Страница администрирования", response = String.class)
     @GetMapping("/admin")
-    public String adminPage(Model model, @CookieValue(value = "data", required = false) String data, Principal principal) {
+    public String adminPage(Model model, Principal principal) {
 
         if (principal == null) {
             return "redirect:/";
         }
 
-        if (data != null) {
-            System.out.println(data);
-        }
-
         model.addAttribute("products", productService.findAll(null));
-
         return "admin";
     }
 
+    @ApiOperation(value = "Страница профиля пользователя", response = String.class)
     @GetMapping("/profile")
-    public String profilePage(Model model, @CookieValue(value = "data", required = false) String data, Principal principal) {
+    public String profilePage(Model model,  Principal principal) {
 
         if (principal == null) {
             return "redirect:/";
@@ -78,13 +76,10 @@ public class ShopController {
         model.addAttribute("reviews", reviewService.getReviewsByShopuser(shopuser).orElse(new ArrayList<>()));
         model.addAttribute("shopuser", shopuser);
 
-        if (data != null) {
-            System.out.println(data);
-        }
-
         return "profile";
     }
 
+    @ApiOperation(value = "Возврат каптчи в виде формате .png", response = String.class)
     @GetMapping(value = "/captcha", produces = MediaType.IMAGE_PNG_VALUE)
     public @ResponseBody byte[] captcha(HttpSession session) {
         try {
@@ -98,6 +93,7 @@ public class ShopController {
         }
     }
 
+    @ApiOperation(value = "Страница подтверждения заказа", response = String.class)
     @PostMapping("/checkout")
     public String proceedToCheckout(String paymentId, Model model) {
 
