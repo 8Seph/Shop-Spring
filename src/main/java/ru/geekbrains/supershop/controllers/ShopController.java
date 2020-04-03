@@ -79,7 +79,7 @@ public class ShopController {
         return "profile";
     }
 
-    @ApiOperation(value = "Возврат каптчи в виде формате .png", response = String.class)
+    @ApiOperation(value = "Возврат каптчи в формате .png", response = String.class)
     @GetMapping(value = "/captcha", produces = MediaType.IMAGE_PNG_VALUE)
     public @ResponseBody byte[] captcha(HttpSession session) {
         try {
