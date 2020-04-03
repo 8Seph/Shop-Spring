@@ -1,10 +1,10 @@
 jib {
     from {
-        image = "openjdk:11-jdk"
+        image = "dockette/jdk8"
     }
     to {
         image = 'localhost:5000/supershop/demo'
-        tags = ['0.0.1']
+        tags = ['1']
     }
     container {
         jvmFlags = ['-Xms1024m', '-Xdebug']
@@ -13,4 +13,4 @@ jib {
     }
 }
 
-jib.to.image = "serpentcross/${rootProject.name}"
+jib.to.image = "test/${rootProject.name}"
