@@ -1,5 +1,6 @@
 package ru.geekbrains.supershop.controllers;
 
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,6 +22,7 @@ public class ReviewController {
 
     private final ReviewService reviewService;
 
+    @ApiOperation(value = "Модерация отзыва", response = String.class)
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String moderateReview(@PathVariable UUID id, @RequestParam String option) throws EntityNotFoundException {
