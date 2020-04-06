@@ -30,3 +30,4 @@ out/
 /src/main/script_generated/**
 ### VS Code ###
 .vscode/
+src/main/java/ru/geekbrains/supershop/persistence/entities/Country.java
