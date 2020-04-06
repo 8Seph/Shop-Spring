@@ -2,7 +2,6 @@ package ru.geekbrains.supershop.services;
 
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -48,11 +47,6 @@ public class ShopuserService implements UserDetailsService {
 
     public boolean isUserExist(String phone) {
         return shopuserRepository.existsByPhone(phone);
-    }
-
-    @RabbitListener(queues = "super-shop.queue")
-    public void getMes(String msg){
-        System.out.println(msg);
     }
 
 }
