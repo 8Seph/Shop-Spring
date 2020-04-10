@@ -32,7 +32,6 @@ supershop:
     routingkey: super.shop
     queue:      super-shop.queue
 
-
 documents:
   service:
   url: "localhost:10210/documents"
