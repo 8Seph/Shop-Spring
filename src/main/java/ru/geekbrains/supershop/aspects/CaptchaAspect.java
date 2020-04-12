@@ -17,14 +17,14 @@ import javax.servlet.http.HttpSession;
 @Configuration
 public class CaptchaAspect {
 
-    @Pointcut("within(ru.geekbrains.supershop.controllers..*)")
-    public void controllerLayer() {}
-
-    @Before(value = "controllerLayer() && " + "args(reviewPojo, session,..)", argNames = "reviewPojo, session")
-    public void checkCaptcha(ReviewPojo reviewPojo, HttpSession session) throws WrongCaptchaCodeException {
-        if (!reviewPojo.getCaptchaCode().equals(session.getAttribute("captchaCode"))) {
-            throw new WrongCaptchaCodeException("Error! Captcha code is incorrect! Please try again!");
-        }
-    }
+//    @Pointcut("within(ru.geekbrains.supershop.controllers..*)")
+//    public void controllerLayer() {}
+//
+//    @Before(value = "controllerLayer() && " + "args(reviewPojo, session,..)", argNames = "reviewPojo, session")
+//    public void checkCaptcha(ReviewPojo reviewPojo, HttpSession session) throws WrongCaptchaCodeException {
+//        if (!reviewPojo.getCaptchaCode().equals(session.getAttribute("captchaCode"))) {
+//            throw new WrongCaptchaCodeException("Error! Captcha code is incorrect! Please try again!");
+//        }
+//    }
 
 }

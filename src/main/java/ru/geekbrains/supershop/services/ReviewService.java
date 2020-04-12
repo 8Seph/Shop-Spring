@@ -47,4 +47,8 @@ public class ReviewService {
         return reviewRepository.findAll();
     }
 
+    @Transactional
+    public void removeReviewById(UUID id) {
+        reviewRepository.removeReviewById(id);
+    }
 }

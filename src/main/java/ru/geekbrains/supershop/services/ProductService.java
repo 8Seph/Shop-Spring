@@ -14,6 +14,7 @@ import ru.geekbrains.supershop.persistence.pojo.ProductPojo;
 
 import ru.geekbrains.supershop.persistence.repositories.ProductRepository;
 
+import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -21,10 +22,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -35,6 +33,19 @@ public class ProductService {
     private EntityManager entityManager;
 
     private final ProductRepository productRepository;
+
+    private final Map<Integer, String> notes;
+
+    @PostConstruct
+    private void init(){
+        for (int i = 0; i < 5; i++) {
+            notes.put(i,"note"+i);
+        }
+    }
+
+    public Product findProductByTitle(String title){
+        return productRepository.findProductByTitle(title);
+    }
 
     public Product findOneById(UUID uuid) throws EntityNotFoundException {
         return productRepository.findById(uuid).orElseThrow(
@@ -96,4 +107,16 @@ public class ProductService {
         return "redirect:/";
     }
 
+    public void addNote(Integer id, String note) {
+        notes.put(id,note);
+    }
+
+    public String getNote(Integer id) {
+       return notes.get(id);
+    }
+
+    @Transactional
+    public void removeProductById(UUID id) {
+        productRepository.removeProductById(id);
+    }
 }

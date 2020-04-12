@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ru.geekbrains.supershop.exceptions.EntityNotFoundException;
 import ru.geekbrains.supershop.persistence.entities.Review;
 import ru.geekbrains.supershop.services.ReviewService;
-import ru.geekbrains.supershop.services.feign.clients.ShopFeignClient;
+// import ru.geekbrains.supershop.services.feign.clients.ShopFeignClient;
 
 import java.util.List;
 import java.util.UUID;

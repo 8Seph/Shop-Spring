@@ -10,13 +10,14 @@ import ru.geekbrains.paymentservice.Payment;
 import ru.geekbrains.paymentservice.PaymentPort;
 import ru.geekbrains.paymentservice.PaymentPortService;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PaymentService {
-
+public class PaymentService implements Serializable {
+    private static final long serialVersionUID = 1L;
     public List<Payment> getPayments(String country) {
 
         PaymentPort paymentPort = new PaymentPortService().getPaymentPortSoap11();
